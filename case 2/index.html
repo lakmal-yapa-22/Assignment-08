@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case 2</title>
+
+    <style>
+        div {
+            width: 100px;
+            height: 50px;
+ border-radius: 10px;
+            border: solid 2px #cccc;
+        }
+        .first{
+            background:red;
+        }
+        .second{
+            background: green;
+
+        }
+       .third{
+            background: blue;
+
+        }
+        .fourth{
+            background: yellow;
+
+        }
+        .fifth{
+            background: pink;
+
+        }
+        .sixth{
+            background: purple;
+
+        }
+
+        section {
+            margin: 10px;
+            margin-right: 40px;
+            margin-left: 40px;
+        }
+
+        .sSection {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .tSection {
+            display: flex;
+            justify-content: end;
+        }
+
+        hr {
+            margin-left: 40px;
+            margin-right: 50px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            width: 150px;
+            height: 50px;
+            background: #2d595c;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .buttons button:hover {
+            background-color: #22dcdc;
+        }
+
+        .buttons button:active {
+            transform: scale(0.98);
+        }
+
+        .buttons button:disabled {
+            background-color: #7a7a7a;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+<section class="fSection">
+    <div class="first"></div>
+</section>
+<hr>
+
+<section class="sSection">
+    <div class="second"></div>
+    <div class="third"></div>
+    <div class="fourth"></div>
+    <div class="fifth"></div>
+</section>
+<hr>
+<section class="tSection">
+    <div class="sixth"></div>
+</section>
+
+<section class="buttons">
+    <button class="button" id="btn_start">Start</button>
+    <button class="button" id="btn_stop" disabled>Stop</button>
+</section>
+
+<script src="../lib/jquery-3.7.1.min.js"></script>
+<script>
+    let color_array = [ "red", "green","blue", "yellow", "pink", "purple"];
+    let myInterval;
+
+    function change() {
+        color_array.push(color_array.shift());
+
+        $(".first").css("background-color", color_array[1]);
+        $(".second").css("background-color", color_array[2]);
+        $(".third").css("background-color", color_array[3]);
+        $(".fourth").css("background-color", color_array[4]);
+        $(".fifth").css("background-color", color_array[5]);
+        $(".sixth").css("background-color", color_array[0]);
+    }
+
+    document.getElementById("btn_start").addEventListener('click', function () {
+        myInterval = setInterval(change, 1000);
+        this.disabled = true;
+        document.getElementById("btn_stop").disabled = false;
+    });
+
+    document.getElementById("btn_stop").addEventListener('click', function () {
+        clearInterval(myInterval);
+        this.disabled = true;
+        document.getElementById("btn_start").disabled = false;
+    });
+</script>
+
+</body>
+</html>
